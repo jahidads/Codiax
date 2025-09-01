@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jahid Hasan- Web Developer & Designer</title>
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/?size=80&id=492ILERveW8G&format=png">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <style>
+        /* Google Font Import */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+
+        /* Universal Styles & Variables */
+        :root {
+            --primary-color: #0a192f; /* Dark Navy Blue */
+            --secondary-color: #1f2a4a; /* Lighter Navy */
+            --text-light: #ccd6f6;
+            --text-dark: #8892b0;
+            --accent-color: #64ffda; /* A bright accent color */
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 2rem;
+        }
+
+        h1, h2 {
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        /* Header / Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+
+        #hero .container {
+            max-width: 800px;
+        }
+        
+        #hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive font size */
+        }
+        
+        #hero h3 {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        #hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        #hero p {
+            max-width: 600px;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 2.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* About Section */
+        #about .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        #about .about-text {
+            flex: 2;
+            color: var(--text-dark);
+        }
+
+        #about .about-image {
+            flex: 1;
+            max-width: 250px;
+        }
+
+        #about .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            border: 3px solid var(--accent-color);
+        }
+        
+        /* Services Section */
+        #services {
+            background-color: var(--secondary-color);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .service-card {
+            background: var(--primary-color);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .service-card i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+        .service-card p {
+            color: var(--text-dark);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .skill-item {
+            background: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .skill-item img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .skill-item p {
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        /* Projects Section */
+        #projects {
+            background-color: var(--secondary-color);
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--primary-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .project-info h3 {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-info p {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .project-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-right: 1rem;
+            font-weight: 600;
+        }
+
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+            overflow: hidden; /* Clip the initial off-screen position */
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .testimonial-card {
+            background: var(--secondary-color);
+            padding: 2rem;
+            border-left: 5px solid var(--accent-color);
+            border-radius: 8px;
+            transform: translateX(100px); /* Start off-screen to the right */
+            opacity: 0;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        }
+        .testimonial-card.show {
+            transform: translateX(0); /* Slide in */
+            opacity: 1;
+        }
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        .testimonial-card h4 {
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        /* Contact Section */
+        #contact {
+             background-color: var(--secondary-color);
+        }
+        
+        #contact .container p {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            color: var(--text-dark);
+        }
+        
+        #contact .container .btn {
+             display: block;
+             width: fit-content;
+             margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%; /* Start off-screen */
+                width: 60%;
+                height: 100vh;
+                background: var(--secondary-color);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.4s ease-in-out;
+            }
+
+            .nav-links.active {
+                right: 0; /* Slide in */
+            }
+
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+
+            .hamburger {
+                display: flex;
+                z-index: 101; /* Above navbar */
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            #about .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="#hero" class="logo">
+            <img src="https://cdn.pixabay.com/animation/2023/10/10/13/27/13-27-45-28_512.gif" alt="Codiax Logo" style="height: 35px; vertical-align: middle; border-radius: 50%; margin-right: 0px;">
+            Codiax
+        </a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <p class="subtitle">Hi, my name is</p>
+                <h1>Jahid.</h1>
+                <h3>I build things for the web.</h3>
+                <p>I'm a passionate Web Developer and Designer focused on creating responsive, user-friendly, and visually appealing digital experiences.</p>
+                <a href="#projects" class="btn">Check out my work!</a>
+                <br><br>
+                <img src="https://cdn.pixabay.com/animation/2023/09/14/10/46/10-46-55-222_512.gif" alt="Hero Image" style="width: 100%; max-width: 500px;">
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Hello! I'm Jahid, a web developer and designer based in Bangladesh. I have a passion for creating beautiful and functional websites from scratch. My journey into web development started with a simple "Hello World", and since then, I've been captivated by the power of code to bring ideas to life.</p>
+                        <br>
+                        <p>I specialize in front-end development using modern technologies. I am also proficient in design tools, which allows me to create cohesive and attractive user interfaces. I am a quick learner, always eager to pick up new technologies and improve my skill set.</p>
+                    </div>
+                    <div class="about-image" style="box-shadow: 0 12px 36px rgba(100,255,218,0.18); background: linear-gradient(135deg, rgba(100,255,218,0.10) 0%, rgba(10,25,47,0.85) 100%); padding: 24px; border-radius: 20px; max-width: 320px; width: 100%;">
+                        <img src="jahid.jpg" alt="Jahid's Portrait" style="width: 100%; height: auto; border-radius: 16px; border: none; box-shadow: 0 6px 24px rgba(0,0,0,0.22); filter: grayscale(10%) contrast(1.1); transition: filter 0.3s;">
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2>What I Do</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-code"></i>
+                        <h3>Web Development</h3>
+                        <p>Creating responsive and high-performance websites from the ground up using HTML, CSS, and JavaScript.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-palette"></i>
+                        <h3>UI/UX Design</h3>
+                        <p>Designing intuitive and engaging user interfaces that provide a seamless user experience across all devices.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-pen-nib"></i>
+                        <h3>Graphic Design</h3>
+                        <p>Crafting logos, banners, and other visual assets using tools like Illustrator, Photoshop, and Canva.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>Full Stack Development</h3>
+                        <p>Building complete web applications with a focus on both front-end and back-end technologies.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Responsive Design</h3>
+                        <p>Ensuring websites look and function perfectly on all screen sizes, from desktops to mobile devices.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <i class="fas fa-tools"></i>
+                        <h3>Maintenance & Support</h3>
+                        <p>Providing ongoing support and maintenance for websites to ensure optimal performance and security.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2>My Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML5">
+                        <p>HTML5</p>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS3">
+                        <p>CSS3</p>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
+                        <p>JavaScript</p>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python">
+                        <p>Python</p>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg" alt="Adobe Illustrator">
+                        <p>Illustrator</p>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" alt="Adobe Photoshop">
+                        <p>Photoshop</p>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://img.icons8.com/?size=48&id=iWw83PVcBpLw&format=png" alt="Canva">
+                        <p>Canva</p>
+                    </div>
+                     <div class="skill-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" alt="VS Code">
+                        <p>VS Code</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <img src="https://img.icons8.com/?size=48&id=13679&format=png" alt="Java">
+                        <p>Java</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <img src="https://img.icons8.com/?size=48&id=TpULddJc4gTh&format=png" alt="C++">
+                        <p>C++</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <img src="https://img.icons8.com/?size=50&id=12599&format=png" alt="gaithub">
+                        <p>GitHub</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <img src="https://img.icons8.com/?size=48&id=rD15EcpCkinR&format=png" alt="netlify">
+                        <p>Netlify</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <img src="https://img.icons8.com/?size=48&id=zfHRZ6i1Wg0U&format=png" alt="Figma">
+                        <p>Figma</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <img src="https://img.icons8.com/?size=48&id=13664&format=png" alt="WordPress">
+                        <p>WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2>My Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="https://cdn.pixabay.com/photo/2018/08/29/17/07/ecommerce-3640321_640.jpg" alt="Project 1">
+                        <div class="project-info">
+                            <h3>E-commerce Website</h3>
+                            <p>A fully responsive e-commerce platform built with HTML, CSS, and JavaScript, featuring a dynamic product catalog and shopping cart.</p>
+                            <div class="project-links">
+                                <a href="https://jahidads.github.io/WorkHub/" target="_blank">Live Demo</a>
+                                <a href="https://jahidads.github.io/WorkHub/" target="_blank">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://cdn.pixabay.com/photo/2020/04/09/14/12/home-5021653_640.jpg" alt="Project 2">
+                        <div class="project-info">
+                            <h3>Personal Blog</h3>
+                            <p>A clean and modern personal blog template designed with a focus on readability and user experience. Built using pure CSS Grid.</p>
+                             <div class="project-links">
+                                <a href="https://jahidads.github.io/Blog/" target="_blank">Live Demo</a>
+                                <a href="https://github.com/jahidads/Blog" target="_blank">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://media.istockphoto.com/id/2042795892/photo/ai-assistance.jpg?s=612x612&w=0&k=20&c=FlTreFa-au4H0A-RmSDz3CgdT-DxkUkQ4tjd_GCGoHA=" alt="Project 3">
+                        <div class="project-info">
+                            <h3>Business with AI</h3>
+                            <p>Cutting-edge artificial intelligence solutions tailored for your enterprise needs. Boost efficiency, reduce costs, and drive innovation.</p>
+                             <div class="project-links">
+                                <a href="https://jahidads.github.io/NinjaTech/" target="_blank">Live Demo</a>
+                                <a href="https://github.com/jahidads/NinjaTech" target="_blank">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="portfolio.png" alt="Project 4">
+                        <div class="project-info">
+                            <h3>Portfolio Website</h3>
+                            <p>A sleek and modern portfolio website template to showcase projects and skills, built with a mobile-first approach using Flexbox.</p>
+                             <div class="project-links">
+                                <a href="https://jahidads.github.io/Portfolio/" target="_blank">Live Demo</a>
+                                <a href="https://github.com/jahidads/Portfolio" target="_blank">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://cdn.pixabay.com/photo/2022/01/29/13/08/programming-6977450_640.jpg" alt="Project 5">
+                        <div class="project-info">
+                            <h3>Web Application tools</h3>
+                            <p>A task management web application with a clean UI, allowing users to create, edit, and delete tasks. Built with HTML, CSS, and JavaScript.</p>
+                             <div class="project-links">
+                                <a href="https://jahidads.github.io/DevTools/" target="_blank">Live Demo</a>
+                                <a href="https://github.com/jahidads/DevTools" target="_blank">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzOTk5Mzh8MHwxfGFsbHx8fHx8fHx8fDE3MjQxMjUxNTV8&ixlib=rb-4.0.3&q=80&w=1080" alt="Project 6">
+                        <div class="project-info">
+                            <h3>Restaurant Website</h3>
+                            <p>A visually appealing restaurant website template with a focus on menu presentation and online reservations, built using modern web technologies.</p>
+                             <div class="project-links">
+                                <a href="https://jahidads.github.io/CyberShield/" target="_blank">Live Demo</a>
+                                <a href="https://github.com/jahidads/CyberShield" target="_blank">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://cdn.pixabay.com/photo/2017/10/06/22/27/communication-2824850_640.jpg" alt="Project 7">
+                        <div class="project-info">
+                            <h3>Landing Page</h3>
+                            <p>A modern landing page template designed to capture leads and promote products or services, built with a focus on conversion optimization.</p>
+                             <div class="project-links">
+                                <a href="https://jahidads.github.io/PixelPatch/" target="_blank">Live Demo</a>
+                                <a href="https://github.com/jahidads/PixelPatch" target="_blank">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://cdn.pixabay.com/photo/2018/12/07/09/00/computer-3861322_640.jpg" alt="Project 8">
+                        <div class="project-info">
+                            <h3>Tech Blog</h3>
+                            <p>A tech-focused blog template with a clean and modern design, optimized for readability and user engagement. Built using HTML5 and CSS3.</p>
+                             <div class="project-links">
+                                <a href="https://jahidads.github.io/DevCaseHub/" target="_blank">Live Demo</a>
+                                <a href="https://github.com/jahidads/DevCaseHub" target="_blank">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://cdn.pixabay.com/photo/2019/04/20/04/51/social-media-4140959_640.jpg" alt="Project 9">
+                        <div class="project-info">
+                            <h3>Startup Website</h3>
+                            <p>A sleek and modern website template for startups, featuring sections for team, services, and contact information. Built with a mobile-first approach.</p>
+                             <div class="project-links">
+                                <a href="https://jahidads.github.io/Social-Media-Design/" target="_blank">Live Demo</a>
+                                <a href="https://github.com/jahidads/Social-Media-Design" target="_blank">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <div class="container">
+                <h2>What Clients Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <p>"Jahid delivered a visually stunning website that perfectly captured our brand's identity. The entire process was seamless and professional."</p>
+                        <h4>- Jane Doe, CEO of TechCorp</h4>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Working with Jahid was a fantastic experience. He is a great communicator and brought our vision to life even better than we imagined."</p>
+                        <h4>- John Smith, Founder of Creative Solutions</h4>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>These testimonials are from real clients who have worked with me on various projects. Their feedback reflects my commitment to delivering high-quality work and exceptional service.</p>
+                        <h4>- Mariah Lee, Creative Director at DesignCo</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <p>I'm currently open to new opportunities and collaborations. Whether you have a question or just want to say hi, feel free to reach out. My inbox is always open!</p>
+                <a href="https://wa.me/8801308839759" class="btn">Say Hello</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 | Designed & Built by Jahid Hasan</p>
+        <div class="social-links">
+            <h1 style="animation: fadeInUp 1s 0.2s both;">Find me on-</h1>
+            <div class="footer-social" style="margin-top: 0.5rem; display: flex; justify-content: center; gap: 24px;">
+                <a href="https://www.linkedin.com/in/jahidhasan/" target="_blank" aria-label="LinkedIn" class="footer-icon" style="color: #64ffda; font-size: 2rem; transition: color 0.3s;">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://facebook.com/jahidhasan" target="_blank" aria-label="Facebook" class="footer-icon" style="color: #1877f3; font-size: 2rem; transition: color 0.3s;">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://twitter.com/jahidhasan" target="_blank" aria-label="Twitter" class="footer-icon" style="color: #1da1f2; font-size: 2rem; transition: color 0.3s;">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+        <style>
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .footer-social .footer-icon {
+                opacity: 0;
+                transform: translateY(30px);
+                animation: fadeInUp 0.8s forwards;
+            }
+            .footer-social .footer-icon:nth-child(1) { animation-delay: 0.3s; }
+            .footer-social .footer-icon:nth-child(2) { animation-delay: 0.5s; }
+            .footer-social .footer-icon:nth-child(3) { animation-delay: 0.7s; }
+            .footer-social .footer-icon:hover {
+                transform: scale(1.2) rotate(-8deg);
+                filter: drop-shadow(0 0 8px var(--accent-color));
+                transition: transform 0.3s, filter 0.3s;
+            }
+        </style>
+        <script>
+            // Animate footer social icons on scroll into view (desktop & mobile)
+            document.addEventListener('DOMContentLoaded', function() {
+                const footerSocial = document.querySelector('.footer-social');
+                if (!footerSocial) return;
+                const icons = footerSocial.querySelectorAll('.footer-icon');
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            icons.forEach((icon, idx) => {
+                                icon.style.animationPlayState = 'running';
+                            });
+                            observer.disconnect();
+                        }
+                    });
+                }, { threshold: 0.2 });
+                observer.observe(footerSocial);
+            });
+        </script>
+    </footer>
+
+
+    <script>
+        // Mobile Navigation Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Hide navbar on scroll down, show on scroll up
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('.navbar');
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > navbar.offsetHeight) {
+                // Downscroll
+                navbar.style.top = '-80px';
+            } else {
+                // Upscroll
+                navbar.style.top = '0';
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+        }, false);
+
+        // Intersection Observer for Testimonials Animation
+        const testimonialSection = document.getElementById('testimonials');
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    testimonialCards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('show');
+                        }, 200 * index); // Add a slight delay for each card
+                    });
+                    observer.unobserve(testimonialSection); // Only animate once
+                }
+            });
+        }, {
+            threshold: 0.2 // Trigger when 20% of the section is visible
+        });
+
+        observer.observe(testimonialSection);
+    </script>
+</body>
+</html>
